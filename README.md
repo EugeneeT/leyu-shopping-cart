@@ -15,13 +15,14 @@ Shopping Cart Functionality:
   A dedicated cart page displays the added items with details.
   
 - Quantity Adjustment:
-  Users can change the quantity or remove items.
+  Users can remove items.
   
 - Total Calculation:
   The cart calculates the total cost of items.
   
 - Checkout:
-  Users can easily proceed to the checkout process.
+  In theory, users can easily proceed to the checkout process.
+  In practice, this simply resets the cart.
 
 
 Implementation Considerations: 
@@ -30,9 +31,26 @@ Implementation Considerations:
 
 
 
+
+Imported functions:
+- loadingTime.js
+- Products factory function
+
+loadingTime.js: 
+  The code defines two functions, `loadingTime` and `shortLoadingTime`, which are used to create a visual loading effect in the console. 
+  These functions return Promises and resolve when the loading animation is completed.
+
 Added extensions: 
 - Node.js
-- readline or Inquirer.js
+- readline
+- cli-boxes
+
+Node.js:
+  is an open-source, server-side runtime environment that allows you to execute JavaScript code on the server. 
+  It's built on Chrome's V8 JavaScript engine and provides a runtime environment for executing JavaScript outside of a web browser. 
+  `Node.js` is designed to be lightweight and efficient, making it well-suited for building scalable and high-performance network applications. 
+  It's commonly used for web servers, real-time applications, microservices, and various other backend tasks. 
+  `Node.js` has a vast ecosystem of libraries and packages available through npm (Node Package Manager), making it a popular choice for developers to build server-side applications using JavaScript.
 
 readline:
   `readline` is a built-in module in Node.js that provides an interface for reading data from a Readable stream (like a file or the terminal) line by line. 
@@ -40,14 +58,8 @@ readline:
   The `readline` module allows you to create an interface for reading lines of text from an input source (such as the standard input) and interact with the user by asking questions and reading their responses. 
   It's especially useful for building command-line applications that require user input.
 
-Inquirer.js:
-  `Inquirer` is a Node.js library that simplifies the process of prompting users for input in a command-line interface. 
-  It provides an easy way to create interactive command-line applications by asking questions, validating responses, and handling user interactions.
-  `Inquirer` is commonly used for creating text-based menus, forms, and various prompts in Node.js applications. 
-  It's particularly useful for building applications like command-line tools, chatbots, or interactive scripts where user input is required.
-
-  In a shopping cart application, we can use `Inquirer` to ask users to add items to the cart, view the cart, and perform other interactions with the shopping cart. 
-  It simplifies the process of collecting and processing user input in the command-line interface.
-
+cli-boxes: 
+  is a JavaScript library that provides a simple way to create customizable text-based boxes and frames in the command-line interface (CLI). 
+  It allows developers to add visual structure and formatting to text-based console applications. With `cli-boxes` you can easily create boxes, frames, and tables using custom characters and styling.
 
 
