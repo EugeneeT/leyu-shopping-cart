@@ -224,14 +224,27 @@ async function emptyCart() {
 
 async function displayCart(cart) {
     // Function to display the items in the cart
-    const itemRemove = 'Enter the number of the item you want to remove \n(or press Enter to go back to the main menu): ';
+    const itemRemove = '\nEnter the number of the item you want to remove \n(or press Enter to go back to the main menu): ';
 
     console.log('Your Cart:');
     await loadingTime();
+
+    let totalItems = 0;
+    let totalPrice = 0;
+    // Initialize variables to track total items and total price
+
     cart.forEach((item, index) => {
         // Loop through each item in the cart and display its details
+
+        totalItems += item.quantity;
+        totalPrice += item.product.price * item.quantity;
+
         console.log(`${index + 1}. ${item.product.name} - Quantity: ${item.quantity} - Price: $${(item.product.price * item.quantity).toFixed(2)}`);
     });
+
+    console.log(`\nTotal Items in Cart: ${totalItems}`);
+    console.log(`Total Amount to Pay: $${totalPrice.toFixed(2)}`);
+
     rl.question(itemRemove, async itemIndex => {
         // Ask the user to enter the number of the item they want to remove or go back to the main menu
         if (itemIndex === '') {
