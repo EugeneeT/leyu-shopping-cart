@@ -7,8 +7,6 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-// Questions 
-const enterId = 'Enter the product ID to add to your cart: ';
 
 // Function to clear the current line in the terminal
 const clearLine = () => {
@@ -47,7 +45,7 @@ function startShopping() {
     // Function to start the shopping app
     console.clear();
     displayProductMenu();
-    firstQuestion();
+    questionEnterId();
 }
 
 function reloadShopping() {
@@ -56,18 +54,14 @@ function reloadShopping() {
     displayProductMenu();
 }
 
-function firstQuestion() {
+// Questions 
+const enterId = 'Enter the product ID to add to your cart: ';
+
+function questionEnterId() {
     // Function to prompt the first question
     rl.question(enterId, productId => {
         handleUserInput(productId);
         // rl.question() is a method provided by the readline module. It's used to display a message to the user and receive their input.
-    });
-}
-
-function nextQuestion() {
-    // Function to prompt the follow up question
-    rl.question(enterId, nextProductId => {
-        handleUserInput(nextProductId);
     });
 }
 
@@ -138,14 +132,14 @@ async function handleUserInput(productId) {
                         await loadingTime();
                         clearLine();
                         clearLine();
-                        nextQuestion();
+                        questionEnterId();
                     } else {
                         // If invalid quantity
                         console.log('Invalid quantity. Please enter a positive amount.');
                         await loadingTime();
                         clearLine();
                         clearLine();
-                        nextQuestion();
+                        questionEnterId();
                     }
 
                 });
@@ -179,7 +173,7 @@ async function handleUserInput(productId) {
                         await loadingTime();
                         clearLine();
                         clearLine();
-                        nextQuestion();
+                        questionEnterId();
                     })
                 } else {
                     // Product not in cart yet
@@ -193,7 +187,7 @@ async function handleUserInput(productId) {
                 await loadingTime();
                 clearLine();
                 clearLine();
-                nextQuestion();
+                questionEnterId();
             }
             break;
     }
@@ -318,7 +312,7 @@ function exitApp() {
             // If the answer is 'n' (no)
             await loadingTime();
             reloadShopping();
-            nextQuestion();
+            questionEnterId();
         }
     });
 }
