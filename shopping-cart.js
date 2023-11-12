@@ -115,44 +115,18 @@ async function handleUserInput(productId) {
             // It does this by using the 'Array.prototype.find()' method, which takes a callback function
             // The callback function compares the 'id' property of each product (p.id) to the 'productId' that was parsed to an integer.
 
-            function enterQuantity() {
-                // Define a function to ask for the quantity of the selected product
-                rl.question(`Enter the quantity of ${product.name} to add to your cart: `, async quantity => {
-                    // The code uses rl.question to prompt the user to enter the quantity for a specific product in their cart
-                    // The user's response is captured in the 'quantity' variable, which represents the input from the user
-                    const cartItem = { product, quantity: parseInt(quantity) };
-                    // The code attempts to convert 'quantity' to an integer (whole number) using parseInt
-                    // This is done to ensure that the user's input is treated as a number, making it suitable for calculations
-                    // The result of the parseInt conversion is stored in the 'cartItem' variable for further processing
-                    // 'cartItem' now holds the numeric value entered by the user, or NaN (Not-a-Number) if the input is not a valid number
-                    if (!isNaN(quantity) && quantity >= 0) {
-                        cart.push(cartItem);
-                        // Add cartItem to the cart
-                        console.log(`Added ${quantity} ${product.name} to your cart.`);
-                        await loadingTime();
-                        clearLine();
-                        clearLine();
-                        questionEnterId();
-                    } else {
-                        // If invalid quantity
-                        console.log('Invalid quantity. Please enter a positive amount.');
-                        await loadingTime();
-                        clearLine();
-                        clearLine();
-                        questionEnterId();
-                    }
-
-                });
-            }
 
             if (product) {
+                // If product ID valid
                 const existingCartItemIndex = cart.findIndex(item => item.product.id === product.id);
                 // Find the index of an existing cart item with the same product
+                const enterQuantity = `Enter the quantity of ${product.name} to add to your cart: `;
+                // question for the following functions 
 
                 if (existingCartItemIndex !== -1) {
                     // If the product is already in the cart
                     clearLine();
-                    rl.question(`Enter the quantity for ${product.name} in your cart: `, async newQuantity => {
+                    rl.question(enterQuantity, async newQuantity => {
                         // The code uses rl.question to prompt the user to enter the quantity for a specific product in their cart
                         // The user's response is captured in the 'newQuantity' variable, which represents the input from the user
                         const quantity = parseInt(newQuantity);
@@ -178,7 +152,33 @@ async function handleUserInput(productId) {
                 } else {
                     // Product not in cart yet
                     clearLine();
-                    enterQuantity();
+                    rl.question(enterQuantity, async quantity => {
+                        // The code uses rl.question to prompt the user to enter the quantity for a specific product in their cart
+                        // The user's response is captured in the 'quantity' variable, which represents the input from the user
+                        const cartItem = { product, quantity: parseInt(quantity) };
+                        // The code attempts to convert 'quantity' to an integer (whole number) using parseInt
+                        // This is done to ensure that the user's input is treated as a number, making it suitable for calculations
+                        // The result of the parseInt conversion is stored in the 'cartItem' variable for further processing
+                        // 'cartItem' now holds the numeric value entered by the user, or NaN (Not-a-Number) if the input is not a valid number
+                        if (!isNaN(quantity) && quantity >= 0) {
+                            cart.push(cartItem);
+                            // Add cartItem to the cart
+                            console.log(`Added ${quantity} ${product.name} to your cart.`);
+                            await loadingTime();
+                            clearLine();
+                            clearLine();
+                            questionEnterId();
+                        } else {
+                            // If invalid quantity
+                            console.log('Invalid quantity. Please enter a positive amount.');
+                            await loadingTime();
+                            clearLine();
+                            clearLine();
+                            questionEnterId();
+                        }
+
+                    });
+
                 }
 
             } else {
