@@ -2,13 +2,13 @@
 
 DCI Javascript project (shopping cart)
 
-Description:
+```Description:```
 
 - Shopping cart functionality is essential for eCommerce websites.
   It allows users to add items to their cart, view the contents, and manage them before proceeding to checkout.
 
 
-Shopping Cart Functionality:
+```Shopping Cart Functionality:```
 
 - Add to Cart:
   Users can add products to their cart while browsing.
@@ -23,49 +23,49 @@ Shopping Cart Functionality:
   In practice, this simply resets the cart.
 
 
-Implementation Considerations:
+```Implementation Considerations:```
 
 - I would like to create a command-line application that simulates the shopping cart functionality,
   allowing users to add, remove, and view items. This can serve as a demonstration of my project's functionality and how it would work on a website.
 
 
-Code Structure:
+```Code Structure:```
 
-Block No. 1: Importing modules and defining styling function
+- Block No. 1: Importing modules and defining styling function
 
-- This block includes module imports and defines styling-related functions and constants.
+This block includes module imports and defines styling-related functions and constants.
 
-Block No. 2: Main Function Definitions
+- Block No. 2: Main Function Definitions
 
-- This block contains the primary functions responsible for managing the main flow of the shopping application, including user input handling and the display of the product menu.
+This block contains the primary functions responsible for managing the main flow of the shopping application, including user input handling and the display of the product menu.
 
-Block No. 3: Menu functions
+- Block No. 3: Menu functions
 
-- These functions are responsible for displaying and managing the shopping cart, including viewing and removing items.
+These functions are responsible for displaying and managing the shopping cart, including viewing and removing items.
 
-Block No. 4: Checkout function
+- Block No. 4: Checkout function
 
-- This block contains the function related to the checkout process, clearing the cart after a successful checkout.
+This block contains the function related to the checkout process, clearing the cart after a successful checkout.
 
-Block No. 5: Exit function
+- Block No. 5: Exit function
 
-- The exitApp function handles the application exit, prompting the user for confirmation before closing.
+The exitApp function handles the application exit, prompting the user for confirmation before closing.
 
-Block No. 6: Start the application
+- Block No. 6: Start the application
 
-- This block initiates the shopping application by calling the startShopping function.
+This block initiates the shopping application by calling the startShopping function.
 
-Products:
+- Products:
 
-- This function defines a factory function createProduct that is used to create product objects with specified properties. The created products are organized into an array and exported for use in other parts of the application.
+This function defines a factory function createProduct that is used to create product objects with specified properties. The created products are organized into an array and exported for use in other parts of the application.
 
-loadingTime:
+- loadingTime:
 
-- This function implements a loading animation using asynchronous JavaScript and promises. It displays "Loading" followed by a series of dots, simulating a loading process. The function returns a promise that resolves when the loading animation is complete. The function is exported for use in other parts of the application.
+This function implements a loading animation using asynchronous JavaScript and promises. It displays "Loading" followed by a series of dots, simulating a loading process. The function returns a promise that resolves when the loading animation is complete. The function is exported for use in other parts of the application.
 
 
 
-Imported functions:
+```Imported functions:```
 
 - loadingTime.js
 - Products factory function
@@ -76,7 +76,7 @@ These functions return Promises and resolve when the loading animation is comple
 
 
 
-Added extensions:
+```Added extensions:```
 
 - Node.js
 - readline
