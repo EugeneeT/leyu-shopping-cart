@@ -33,35 +33,35 @@ DCI Javascript project (shopping cart)
 
 - Block No. 1: Importing modules and defining styling function
 
-This block includes module imports and defines styling-related functions and constants.
+  This block includes module imports and defines styling-related functions and constants.
 
 - Block No. 2: Main Function Definitions
 
-This block contains the primary functions responsible for managing the main flow of the shopping application, including user input handling and the display of the product menu.
+  This block contains the primary functions responsible for managing the main flow of the shopping application, including user input handling and the display of the product menu.
 
 - Block No. 3: Menu functions
 
-These functions are responsible for displaying and managing the shopping cart, including viewing and removing items.
+  These functions are responsible for displaying and managing the shopping cart, including viewing and removing items.
 
 - Block No. 4: Checkout function
 
-This block contains the function related to the checkout process, clearing the cart after a successful checkout.
+  This block contains the function related to the checkout process, clearing the cart after a successful checkout.
 
 - Block No. 5: Exit function
 
-The exitApp function handles the application exit, prompting the user for confirmation before closing.
+  The exitApp function handles the application exit, prompting the user for confirmation before closing.
 
 - Block No. 6: Start the application
 
-This block initiates the shopping application by calling the startShopping function.
+  This block initiates the shopping application by calling the startShopping function.
 
 - Products:
 
-This function defines a factory function createProduct that is used to create product objects with specified properties. The created products are organized into an array and exported for use in other parts of the application.
+  This function defines a factory function createProduct that is used to create product objects with specified properties. The created products are organized into an array and exported for use in other parts of the application.
 
 - loadingTime:
 
-This function implements a loading animation using asynchronous JavaScript and promises. It displays "Loading" followed by a series of dots, simulating a loading process. The function returns a promise that resolves when the loading animation is complete. The function is exported for use in other parts of the application.
+  This function implements a loading animation using asynchronous JavaScript and promises. It displays "Loading" followed by a series of dots, simulating a loading process. The function returns a promise that resolves when the loading animation is complete. The function is exported for use in other parts of the application.
 
 
 
