@@ -28,6 +28,13 @@ DCI Javascript project (shopping cart)
 - I would like to create a command-line application that simulates the shopping cart functionality,
   allowing users to add, remove, and view items. This can serve as a demonstration of my project's functionality and how it would work on a website.
 
+```Imported functions:```
+
+- loadingTime.js
+- products.js
+
+
+
 
 ```Code Structure:```
 
@@ -59,20 +66,21 @@ DCI Javascript project (shopping cart)
 
   This function defines a factory function createProduct that is used to create product objects with specified properties. The created products are organized into an array and exported for use in other parts of the application.
 
-- loadingTime:
+- loadingTime Function:
 
-  This function implements a loading animation using asynchronous JavaScript and promises. It displays "Loading" followed by a series of dots, simulating a loading process. The function returns a promise that resolves when the loading animation is complete. The function is exported for use in other parts of the application.
+  The loadingTime function creates a visual loading effect in the console. It returns a Promise that resolves when the loading animation is completed. The animation displays "Loading" followed by a series of dots, simulating a loading process. The function is exported for use in other parts of the application.
+
+   Required to use `async` and `await` 
+ Both are features in JavaScript that simplify working with asynchronous code, making it appear more synchronous and readable. They are primarily used with functions that return promises.
+
+  `async` Function:
+The async keyword is used to declare a function as asynchronous. An asynchronous function returns a promise implicitly. Inside an async function, you can use the await keyword to pause the execution until the promise is resolved.
+
+  `await` Operator:
+The await keyword is used to pause the execution of an async function until the promise is settled (resolved or rejected). It can only be used inside an async function.
 
 
 
-```Imported functions:```
-
-- loadingTime.js
-- Products factory function
-
-loadingTime.js:
-The code defines two functions, `loadingTime` and `shortLoadingTime`, which are used to create a visual loading effect in the console.
-These functions return Promises and resolve when the loading animation is completed.
 
 
 
