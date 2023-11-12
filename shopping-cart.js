@@ -92,108 +92,110 @@ function displayProductMenu() {
 
 async function handleUserInput(productId) {
     // Function to handle user input
-    if (productId === 'q') {
-        // If the user wants to quit the application
-        await loadingTime();
-        clearLine();
-        exitApp();
+    switch (productId) {
+        // The switch statement handles different cases based on the user's input (productId) and executes the corresponding code block for each case
+        // I am using switch statement to improve readability of my code
+        case 'q':
+            // If the user wants to quit the application
+            await loadingTime();
+            clearLine();
+            exitApp();
+            break;
 
-    } else if (productId === 'O') {
-        // If the user wants to view the cart
-        clearLine();
-        viewCart();
+        case 'O':
+            // If the user wants to view the cart
+            clearLine();
+            viewCart();
+            break;
 
-    } else if (productId === 'C') {
-        // If the user wants to checkout (clear the cart)
-        checkout();
-        // In a real application, I'd handle payment and order processing here
-        // For simplicity, I'll clear the cart after checkout
-    } else {
-        const product = products.find(p => p.id === parseInt(productId));
-        // This line of code searches for a product in the 'products' array based on the provided 'productId'
-        // It does this by using the 'Array.prototype.find()' method, which takes a callback function
-        // The callback function compares the 'id' property of each product (p.id) to the 'productId' that was parsed to an integer.
+        case 'C':
+            // If the user wants to checkout (clear the cart)
+            checkout();
+            // In a real application, I'd handle payment and order processing here
+            // For simplicity, I'll clear the cart after checkout
+            break;
 
+        default:
+            const product = products.find(p => p.id === parseInt(productId));
+            // This line of code searches for a product in the 'products' array based on the provided 'productId'
+            // It does this by using the 'Array.prototype.find()' method, which takes a callback function
+            // The callback function compares the 'id' property of each product (p.id) to the 'productId' that was parsed to an integer.
 
-
-        function enterQuantity() {
-            // Define a function to ask for the quantity of the selected product
-            rl.question(`Enter the quantity of ${product.name} to add to your cart: `, async quantity => {
-                // The code uses rl.question to prompt the user to enter the quantity for a specific product in their cart
-                // The user's response is captured in the 'quantity' variable, which represents the input from the user
-                const cartItem = { product, quantity: parseInt(quantity) };
-                // The code attempts to convert 'quantity' to an integer (whole number) using parseInt
-                // This is done to ensure that the user's input is treated as a number, making it suitable for calculations
-                // The result of the parseInt conversion is stored in the 'cartItem' variable for further processing
-                // 'cartItem' now holds the numeric value entered by the user, or NaN (Not-a-Number) if the input is not a valid number
-                if (!isNaN(quantity) && quantity >= 0) {
-                    cart.push(cartItem);
-                    // Add cartItem to the cart
-                    console.log(`Added ${quantity} ${product.name} to your cart.`);
-                    await loadingTime();
-                    clearLine();
-                    clearLine();
-                    nextQuestion();
-
-                } else {
-                    // If invalid quantity
-                    console.log('Invalid quantity. Please enter a positive amount.');
-                    await loadingTime();
-                    clearLine();
-                    clearLine();
-                    nextQuestion();
-                }
-
-            });
-        }
-
-
-        if (product) {
-            const existingCartItemIndex = cart.findIndex(item => item.product.id === product.id);
-            // Find the index of an existing cart item with the same product
-
-            if (existingCartItemIndex !== -1) {
-                // If the product is already in the cart
-                clearLine();
-                rl.question(`Enter the quantity for ${product.name} in your cart: `, async newQuantity => {
+            function enterQuantity() {
+                // Define a function to ask for the quantity of the selected product
+                rl.question(`Enter the quantity of ${product.name} to add to your cart: `, async quantity => {
                     // The code uses rl.question to prompt the user to enter the quantity for a specific product in their cart
-                    // The user's response is captured in the 'newQuantity' variable, which represents the input from the user
-                    const quantity = parseInt(newQuantity);
-                    // The code attempts to convert 'newQuantity' to an integer (whole number) using parseInt
+                    // The user's response is captured in the 'quantity' variable, which represents the input from the user
+                    const cartItem = { product, quantity: parseInt(quantity) };
+                    // The code attempts to convert 'quantity' to an integer (whole number) using parseInt
                     // This is done to ensure that the user's input is treated as a number, making it suitable for calculations
-                    // The result of the parseInt conversion is stored in the 'quantity' variable for further processing
-                    // 'quantity' now holds the numeric value entered by the user, or NaN (Not-a-Number) if the input is not a valid number
+                    // The result of the parseInt conversion is stored in the 'cartItem' variable for further processing
+                    // 'cartItem' now holds the numeric value entered by the user, or NaN (Not-a-Number) if the input is not a valid number
                     if (!isNaN(quantity) && quantity >= 0) {
-                        // If the entered quantity is a positive number
-                        cart[existingCartItemIndex].quantity += quantity;
-                        // Add the new quantity to the existing cart item
-                        console.log(`${quantity} more of ${product.name} added to the cart.`);
-                        // and display a message confirming the addition
-
+                        cart.push(cartItem);
+                        // Add cartItem to the cart
+                        console.log(`Added ${quantity} ${product.name} to your cart.`);
+                        await loadingTime();
+                        clearLine();
+                        clearLine();
+                        nextQuestion();
                     } else {
                         // If invalid quantity
                         console.log('Invalid quantity. Please enter a positive amount.');
+                        await loadingTime();
+                        clearLine();
+                        clearLine();
+                        nextQuestion();
                     }
-                    await loadingTime();
-                    clearLine();
-                    clearLine();
-                    nextQuestion();
-                })
-            } else {
-                // Product not in cart yet
-                clearLine();
-                enterQuantity();
+
+                });
             }
 
+            if (product) {
+                const existingCartItemIndex = cart.findIndex(item => item.product.id === product.id);
+                // Find the index of an existing cart item with the same product
 
-        } else {
-            // If invalid product ID
-            console.log('Invalid product ID. Please try again.');
-            await loadingTime();
-            clearLine();
-            clearLine();
-            nextQuestion();
-        }
+                if (existingCartItemIndex !== -1) {
+                    // If the product is already in the cart
+                    clearLine();
+                    rl.question(`Enter the quantity for ${product.name} in your cart: `, async newQuantity => {
+                        // The code uses rl.question to prompt the user to enter the quantity for a specific product in their cart
+                        // The user's response is captured in the 'newQuantity' variable, which represents the input from the user
+                        const quantity = parseInt(newQuantity);
+                        // The code attempts to convert 'newQuantity' to an integer (whole number) using parseInt
+                        // This is done to ensure that the user's input is treated as a number, making it suitable for calculations
+                        // The result of the parseInt conversion is stored in the 'quantity' variable for further processing
+                        // 'quantity' now holds the numeric value entered by the user, or NaN (Not-a-Number) if the input is not a valid number
+                        if (!isNaN(quantity) && quantity >= 0) {
+                            // If the entered quantity is a positive number
+                            cart[existingCartItemIndex].quantity += quantity;
+                            // Add the new quantity to the existing cart item
+                            console.log(`${quantity} more of ${product.name} added to the cart.`);
+                            // and display a message confirming the addition
+                        } else {
+                            // If invalid quantity
+                            console.log('Invalid quantity. Please enter a positive amount.');
+                        }
+                        await loadingTime();
+                        clearLine();
+                        clearLine();
+                        nextQuestion();
+                    })
+                } else {
+                    // Product not in cart yet
+                    clearLine();
+                    enterQuantity();
+                }
+
+            } else {
+                // If invalid product ID
+                console.log('Invalid product ID. Please try again.');
+                await loadingTime();
+                clearLine();
+                clearLine();
+                nextQuestion();
+            }
+            break;
     }
 }
 // ******************************************
@@ -232,14 +234,18 @@ async function displayCart(cart) {
     let totalItems = 0;
     let totalPrice = 0;
     // Initialize variables to track total items and total price
+    // I am using let since these variables are being updated in a loop,
 
     cart.forEach((item, index) => {
         // Loop through each item in the cart and display its details
 
         totalItems += item.quantity;
+        // Increment totalItems by the quantity of the current item
         totalPrice += item.product.price * item.quantity;
+        // Increment totalPrice by the price of the current item multiplied by its quantity
 
         console.log(`${index + 1}. ${item.product.name} - Quantity: ${item.quantity} - Price: $${(item.product.price * item.quantity).toFixed(2)}`);
+        // Display the total items and total amount to pay after the loop
     });
 
     console.log(`\nTotal Items in Cart: ${totalItems}`);
@@ -280,7 +286,8 @@ function removeItem(itemIndex) {
 }
 // ******************************************
 
-// Checkout function 
+
+// Block No. 4: Checkout function 
 
 async function checkout() {
     // Function to checkout
@@ -296,9 +303,10 @@ async function checkout() {
 }
 // ******************************************
 
-// Exit function
+
+// Block No. 5: Exit function
 function exitApp() {
-    // Function to exit with confirmation question
+    // exit with confirmation question
     const exitQuestion = 'Are you sure you want to exit? (Y/N): ';
 
     rl.question(exitQuestion, async answer => {
@@ -317,5 +325,6 @@ function exitApp() {
 // ******************************************
 
 
+// Block No. 6: Start the application
 startShopping();
-// Start the shopping application
+// the shopping application

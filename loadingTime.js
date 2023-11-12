@@ -1,4 +1,5 @@
 // The `loadingTime` function is an asynchronous function that simulates a loading animation.
+
 function loadingTime() {
     return new Promise((resolve) => {
         let dots = '';
